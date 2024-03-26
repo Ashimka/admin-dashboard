@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import React from "react";
 import { Colors, DrawerWidth } from "../styles/theme";
-import { BrowserRouter as Router } from "react-router-dom";
-import AppRoutes from "../Routes";
+import { RouterProvider } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import NavDrawer from "./NavDrawer";
+import { router } from "../routes";
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -35,12 +35,10 @@ const AdminApp = () => {
         height: "100vh",
       }}
     >
-      <Router>
-        <NavDrawer open={open} setOpen={setOpen} />
-        <Main open={open}>
-          <AppRoutes />
-        </Main>
-      </Router>
+      <NavDrawer open={open} setOpen={setOpen} />
+      <Main open={open}>
+        <RouterProvider router={router} />
+      </Main>
     </Box>
   );
 };
