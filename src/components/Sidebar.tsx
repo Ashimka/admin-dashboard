@@ -95,7 +95,7 @@ const Drawer = styled(MuiDrawer, {
 export default function Sidebar() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [selectedItem, setSelectedItem] = React.useState("");
+  const [selectedItem, setSelectedItem] = React.useState("Dashboard");
   const navigate = useNavigate();
 
   const handleDrawerOpen = () => {

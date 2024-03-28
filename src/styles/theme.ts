@@ -13,6 +13,21 @@ const theme = createTheme({
   },
 
   components: {
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&.Mui-selected": {
+            background: Colors.white,
+          },
+          "&.Mui-selected:hover": {
+            background: Colors.hover_bg,
+          },
+          "&:hover": {
+            background: Colors.hover_bg,
+          },
+        },
+      },
+    },
     MuiAppBar: {
       styleOverrides: {
         root: { background: Colors.dim_grey },

@@ -21,6 +21,7 @@ export const Colors = {
   light_gray: "rgb(230, 230, 230)",
   white: "#fff",
   black: "#000",
+  hover_bg: "#3b82f680",
 };
 
 export const cssUtils = {
