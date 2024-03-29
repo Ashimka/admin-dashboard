@@ -22,6 +22,7 @@ import Settings from "@mui/icons-material/Settings";
 import { Outlet, useNavigate } from "react-router-dom";
 import { navLinks } from "../utils/navLinks";
 import { Colors, DrawerWidth } from "../styles/colors";
+import SearchBar from "./Search";
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DrawerWidth,
@@ -129,10 +130,17 @@ export default function Sidebar() {
             <MenuIcon />
           </IconButton>
           {!open && (
-            <Typography fontWeight={"bold"} variant="h6" noWrap component="div">
+            <Typography
+              overflow={"visible"}
+              fontWeight={"bold"}
+              variant="h6"
+              noWrap
+              component="div"
+            >
               АДМИН ПАНЕЛЬ
             </Typography>
           )}
+          <SearchBar />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
