@@ -30,7 +30,7 @@ const theme = createTheme({
     },
     MuiAppBar: {
       styleOverrides: {
-        root: { background: Colors.dim_grey },
+        root: { background: Colors.lavender, color: Colors.graphite_black },
       },
     },
     MuiButton: {
@@ -45,7 +45,7 @@ const theme = createTheme({
         paper: {
           width: DrawerWidth,
           background: Colors.secondary,
-          color: Colors.secondary,
+          color: Colors.black,
         },
       },
     },

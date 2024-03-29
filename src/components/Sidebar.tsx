@@ -114,7 +114,7 @@ export default function Sidebar() {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" elevation={0} open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -128,13 +128,21 @@ export default function Sidebar() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Dashboard
-          </Typography>
+          {!open && (
+            <Typography fontWeight={"bold"} variant="h6" noWrap component="div">
+              АДМИН ПАНЕЛЬ
+            </Typography>
+          )}
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
+          {open && (
+            <Typography fontWeight={"bold"} noWrap component="div">
+              АДМИН ПАНЕЛЬ
+            </Typography>
+          )}
+
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
@@ -144,7 +152,13 @@ export default function Sidebar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        <List
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
           {navLinks.map((item, index) => (
             <ListItem key={item.name} disablePadding sx={{ display: "block" }}>
               <ListItemButton

@@ -9,6 +9,8 @@ export const Colors = {
   warning: "#FFC107",
   dark: "#0e1b20",
   light: "#aaa",
+  lavender: "#e6e6fa",
+  graphite_black: "#1c1c1c",
   muted: "#abafb3",
   border: "#DDDFE1",
   inverse: "#2F3D4A",
