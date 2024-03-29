@@ -1,4 +1,3 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
@@ -8,11 +7,11 @@ const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: 15,
   backgroundColor: Colors.white,
-  "&:hover": {
-    backgroundColor: `1px solid ${Colors.light}`,
-  },
   marginRight: theme.spacing(2),
   marginLeft: "1rem",
+  "&:hover": {
+    outline: `1px solid ${Colors.light}`,
+  },
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
