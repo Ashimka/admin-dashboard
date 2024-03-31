@@ -75,6 +75,8 @@ const Products = () => {
   };
   const handleSubmit = (values: FormValues) => {
     console.log(values);
+    values.id = Math.round(Math.random() * 1000);
+    product.push(values);
     setOpen(false);
   };
   return (
