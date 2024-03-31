@@ -23,15 +23,15 @@ import React from "react";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 
-type productType = {
-  id: number;
+interface FormValues {
+  id?: number;
   name: string;
-  price: number | null;
-  quantity: number | null;
+  price: number | string;
+  quantity: number | string;
   desc: string;
-};
+}
 
-const product: Array<productType> = [
+const product: Array<FormValues> = [
   {
     id: 1,
     name: "qwer",
@@ -51,31 +51,29 @@ const validationSchema = Yup.object().shape({
 
 const Products = () => {
   const [open, setOpen] = React.useState(false);
-  const [initialValues, setInitialValues] = React.useState<productType>({
-    id: -1,
+  const [initialValues, setInitialValues] = React.useState<FormValues>({
     name: "",
-    price: null,
-    quantity: null,
+    price: "",
+    quantity: "",
     desc: "",
   });
-  const handleProductEdit = (product: productType) => {
+  const handleProductEdit = (product: FormValues) => {
     setOpen(true);
     setInitialValues(product);
   };
-  const handleProductDelete = (id: number) => {
-    console.log(id);
+  const handleProductDelete = (product: FormValues) => {
+    console.log(product);
   };
   const handleAddProduct = () => {
     setOpen(true);
     setInitialValues({
-      id: -1,
       name: "",
-      price: null,
-      quantity: null,
+      price: "",
+      quantity: "",
       desc: "",
     });
   };
-  const handleSubmit = (values) => {
+  const handleSubmit = (values: FormValues) => {
     console.log(values);
     setOpen(false);
   };
@@ -117,7 +115,7 @@ const Products = () => {
                     <IconButton onClick={() => handleProductEdit(item)}>
                       <Edit />
                     </IconButton>
-                    <IconButton onClick={() => handleProductDelete(item.id)}>
+                    <IconButton onClick={() => handleProductDelete(item)}>
                       <Delete sx={{ color: Colors.danger }} />
                     </IconButton>
                   </TableCell>
@@ -202,7 +200,6 @@ const Products = () => {
                   {getFieldProps("id").value !== -1 ? (
                     <Button
                       disabled={!dirty || !isValid}
-                      onClick={handleSubmit}
                       type="submit"
                       variant="contained"
                       color="primary"
@@ -212,7 +209,6 @@ const Products = () => {
                   ) : (
                     <Button
                       disabled={!dirty || !isValid}
-                      onClick={handleSubmit}
                       type="submit"
                       variant="contained"
                       color="primary"
