@@ -6,6 +6,7 @@ import ErrorPage from "./errorPage";
 import Products from "./pages/Products";
 import Settings from "./pages/Settings";
 import Dashboard from "./pages/Dashboard";
+import LoginPage from "./pages/LoginPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         element: <Settings />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
 
