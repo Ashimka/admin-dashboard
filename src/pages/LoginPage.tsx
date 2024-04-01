@@ -11,6 +11,7 @@ import {
   Container,
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { Colors } from "../styles/colors";
 
 const LoginPage = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +69,15 @@ const LoginPage = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2 }}
+            sx={{
+              mt: 3,
+              mb: 2,
+              background: Colors.secondary,
+              color: Colors.graphite_black,
+              "&:hover": {
+                background: Colors.hover_bg,
+              },
+            }}
           >
             Войти
           </Button>
