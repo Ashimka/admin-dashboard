@@ -23,6 +23,8 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { navLinks } from "../utils/navLinks";
 import { Colors, DrawerWidth } from "../styles/colors";
 import SearchBar from "./Search";
+import { Button } from "@mui/material";
+import LoginIcon from "@mui/icons-material/Login";
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: DrawerWidth,
@@ -141,6 +143,15 @@ export default function Sidebar() {
             </Typography>
           )}
           <SearchBar />
+          <Button
+            onClick={() => navigate("/login")}
+            sx={{ ml: "auto", "&:hover": { bgcolor: Colors.hover_bg } }}
+            variant="outlined"
+            size="small"
+            startIcon={<LoginIcon />}
+          >
+            Вход
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
