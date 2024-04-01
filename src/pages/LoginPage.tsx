@@ -12,15 +12,25 @@ import {
 } from "@mui/material";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Colors } from "../styles/colors";
+import { axiosApi } from "../app/axios";
 
 const LoginPage = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    try {
+      event.preventDefault();
+      const dataForm = new FormData(event.currentTarget);
+
+      const { data } = await axiosApi.post("/auth/login", {
+        phone: dataForm.get("phone"),
+        password: dataForm.get("password"),
+      });
+
+      console.log(data);
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -45,10 +55,10 @@ const LoginPage = () => {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="phone"
             label="Логин"
-            name="email"
-            autoComplete="email"
+            name="phone"
+            autoComplete="phone"
             autoFocus
           />
           <TextField
