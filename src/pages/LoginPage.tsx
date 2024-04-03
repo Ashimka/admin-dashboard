@@ -1,6 +1,6 @@
 import * as React from "react";
 import { isAxiosError } from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import {
   Avatar,
   Button,
@@ -15,7 +15,6 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { Colors } from "../styles/colors";
 import { axiosApi } from "../app/axios";
-import "react-toastify/dist/ReactToastify.css";
 
 const LoginPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,7 +34,10 @@ const LoginPage = () => {
       return data;
     } catch (error) {
       if (isAxiosError(error)) {
-        toast.warning(error.response?.data?.message);
+        if (error.response?.status === 400) {
+          return toast.warning(error.response?.data?.message);
+        }
+        toast.error(error?.message);
       }
     }
   };
@@ -100,14 +102,6 @@ const LoginPage = () => {
           </Button>
         </Box>
       </Box>
-      <ToastContainer
-        position="top-left"
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        limit={1}
-        theme="colored"
-      />
     </Container>
   );
 };
