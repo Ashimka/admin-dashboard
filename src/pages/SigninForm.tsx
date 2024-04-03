@@ -17,11 +17,9 @@ import {
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-
-interface ILoginForm {
-  phone: string;
-  password: string;
-}
+import { ILoginForm } from "../types/auth";
+import { fetchLogin } from "../services/signinService";
+import { isAxiosError } from "axios";
 
 const validationSchema = Yup.object().shape({
   phone: Yup.string().required("Введите номер телефона"),
@@ -37,11 +35,23 @@ const SigninForm = () => {
     password: "",
   });
 
-  const handleSubmit = (loginValue: ILoginForm) => {
-    console.log(loginValue);
-    toast.success("Вы авторизовались!");
+  const handleSubmit = async (loginValue: ILoginForm) => {
+    try {
+      console.log(loginValue);
+      const { data } = await fetchLogin(loginValue);
 
-    setOpen(false);
+      toast.success("Вы авторизовались!");
+      console.log(data);
+
+      setOpen(false);
+    } catch (error) {
+      if (isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          return toast.warning(error.response?.data?.message);
+        }
+        toast.error(error?.message);
+      }
+    }
   };
   return (
     <Dialog open={open} fullWidth maxWidth="xs">
