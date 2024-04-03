@@ -8,7 +8,7 @@ import ErrorPage from "./errorPage";
 import Products from "./pages/Products";
 import Settings from "./pages/Settings";
 import Dashboard from "./pages/Dashboard";
-import LoginPage from "./pages/LoginPage";
+import SigninForm from "./pages/SigninForm";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <LoginPage />,
+    element: <SigninForm />,
     errorElement: <ErrorPage />,
   },
 ]);
