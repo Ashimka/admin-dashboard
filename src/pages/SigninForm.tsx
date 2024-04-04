@@ -1,6 +1,5 @@
 import React from "react";
 
-import { toast } from "react-toastify";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import {
@@ -18,8 +17,8 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { ILoginForm } from "../types/auth";
-import { fetchLogin } from "../services/signinService";
-import { isAxiosError } from "axios";
+import { useLoginUser } from "../services/mutations";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   phone: Yup.string().required("Введите номер телефона"),
@@ -35,22 +34,17 @@ const SigninForm = () => {
     password: "",
   });
 
+  const userMutation = useLoginUser();
+  const navigate = useNavigate();
+
   const handleSubmit = async (loginValue: ILoginForm) => {
     try {
-      console.log(loginValue);
-      const { data } = await fetchLogin(loginValue);
-
-      toast.success("Вы авторизовались!");
-      console.log(data);
+      await userMutation.mutateAsync(loginValue);
 
       setOpen(false);
+      navigate("/");
     } catch (error) {
-      if (isAxiosError(error)) {
-        if (error.response?.status === 400) {
-          return toast.warning(error.response?.data?.message);
-        }
-        toast.error(error?.message);
-      }
+      console.log(error);
     }
   };
   return (
