@@ -4,6 +4,8 @@ import { ILoginForm } from "../types/auth";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
 
+export const useRegister = () => {};
+
 export const useLoginUser = () => {
   const queryClient = useQueryClient();
 
